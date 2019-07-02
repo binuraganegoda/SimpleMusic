@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:simplemusic/bottom.dart';
+import 'package:simplemusic/songs.dart';
+//import 'package:simplemusic/theme.dart';
 
 
 void main() => runApp(MyApp());
@@ -62,7 +65,23 @@ class _MyHomePageState extends State<MyHomePage> {
           //seekbar
           new Expanded(
 
-            child: new Container(),
+            child: new Center(
+              child: new Container(
+
+                width: 125.0,
+                height: 125.0,
+                              
+                child: new RadialSeekBar(
+                    child: new ClipOval(
+                    clipper: new CircleClipper(),
+                        child: new Image.network(
+                        demoPlaylist.songs[0].albumArtUrl,
+                        fit: BoxFit.cover,
+                    ),
+                  ),
+                )
+              ),
+            ),
 
           ),
 
@@ -76,118 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
 
           //song title, artist name & controls
-          new Container(
-
-          color: Colors.black,
-          
-            child: Padding(
-              padding: const EdgeInsets.only(top: 40.0, bottom: 50.0),
-              child: new Column(
-                  children: <Widget>[
-                    new RichText(
-                      text: new TextSpan(
-                          text: '',
-                          children: [
-                              new TextSpan(
-
-                                text: 'Song Title\n',
-                                style: new TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.bold,
-                                    letterSpacing: 4.0,
-                                    height: 1.5,
-                                ),
-
-                              ),
-                              new  TextSpan(
-
-                                text: 'Artist name',
-                                style: new TextStyle(
-                                  color: Colors.white.withOpacity(0.75),
-                                  fontSize: 12.0,
-                                  letterSpacing: 3.0,
-                                  height: 1.5,
-                                )
-                              )
-                          ]
-
-                      )
-
-                    ),
-
-                    Padding(
-                      padding: const EdgeInsets.only(top: 40.0),
-                      child: new Row(
-                        children: <Widget>[
-                          new Expanded(child: new Container()),
-
-                          new IconButton(
-
-                            icon: new Icon(
-                              
-                              Icons.skip_previous,
-                              color: Colors.white,
-                              size: 35.0,
-                            ),
-                          onPressed: (){
-
-                            //Todo
-                          },
-                          ),
-
-                           new Expanded(child: new Container()),
-
-                           new RawMaterialButton(
-
-                             shape: new CircleBorder(),
-                             fillColor: Colors.white,
-                             splashColor: Colors.pink,
-                             highlightColor: Colors.red.withOpacity(0.50),
-                             elevation: 10.0,
-                             highlightElevation: 5.0,
-
-                             onPressed: (){
-
-                               //Todo
-                             },
-                                                                                          
-                             
-                           ),
-
-
-                          new Expanded(child: new Container()),
-
-                          new IconButton(
-
-                            icon: new Icon(
-                              
-                              Icons.skip_next,
-                              color: Colors.white,
-                              size: 35.0,
-                            ),
-                          onPressed: (){
-
-                            //Todo
-                          },
-                          ),
-
-                          new Expanded(child: new Container()),
-
-                          
-
-                        ],
-                      ),
-                    )
-                      
-
-                  ],
-
-              ),
-            ),
-          )
-
-
+          new BottomControls()
 
         ],    
       
@@ -196,5 +104,42 @@ class _MyHomePageState extends State<MyHomePage> {
    );
            
     
+  }
+}
+
+class RadialSeekBar extends StatefulWidget {
+
+  final double trackWidth;
+  final Color trackColor;
+  final double progressWidth;
+  final Color progressColor;
+  final double progressPercent;
+  final double thumbSize;
+  final Color thumbColor;
+  final double thumbPosition;
+ 
+ RadialSeekBar({
+
+   this.trackWidth = 3.0,
+    this.trackColor = Colors.grey,
+    this.progressWidth = 5.0,
+    this.progressColor = Colors.black,
+    this.progressPercent = 0.0,
+    this.thumbSize = 10.0,
+    this.thumbColor = Colors.black,
+    this.thumbPosition = 0.0,
+
+ });
+
+  @override
+  _RadialSeekBarState createState() => _RadialSeekBarState();
+}
+
+class _RadialSeekBarState extends State<RadialSeekBar> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      
+    );
   }
 }
